@@ -1,12 +1,31 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import axios from "axios";
+//import axios from "axios";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import "./App.css";
+import NavbarView from "./components/views/RegisterView";
+import HomePageView from "./components/views/HomePageView";
+import LoginView from "./components/views/LoginView;";
+import RegisterView from "./components/views/RegisterView";
 
 function App() {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null); // JWT token after login/register
+
+  return (
+    <div className="App">
+      <Router>
+        <NavbarView />
+        <Routes>
+          <Route exact path="/" element={<HomePageView />} />
+          <Route exact path="/login" element={<LoginView />} />
+          <Route exact path="/register" element={<RegisterView />} />
+        </Routes>
+        <HomePageView />
+      </Router>
+    </div>
+  );
 }
 
 export default App;

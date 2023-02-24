@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
 
-export default function SemesterList({ user, token }) {
+export default function SemesterList() {
   const [loading, setLoading] = useState(false);
   const [semesters, setSemesters] = useState(); // List of all semesters
   const [error, setError] = useState();
