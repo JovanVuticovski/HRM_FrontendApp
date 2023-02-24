@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useState } from "react";
 //import axios from "axios";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-
 import "./App.css";
 import NavbarView from "./components/views/RegisterView";
 import HomePageView from "./components/views/HomePageView";
