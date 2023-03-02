@@ -7,7 +7,9 @@ export default function SemesterList() {
   const [semesters, setSemesters] = useState(); // List of all semesters
   const [error, setError] = useState();
 
-  useEffect(() => {
+  // Get All semesters from backend function
+
+  /*useEffect(() => {
     console.log(semesters);
     setLoading(true);
     axios
@@ -21,7 +23,7 @@ export default function SemesterList() {
       .finally(() => {
         setLoading(false);
       });
-  }, []);
+  }, []);*/
 
   return (
     <div className="App">

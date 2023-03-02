@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 import NavbarView from "./components/views/RegisterView";
 import HomePageView from "./components/views/HomePageView";
-import LoginView from "./components/views/LoginView;";
+import LoginView from "./components/views/LoginView";
 import RegisterView from "./components/views/RegisterView";
 
 function App() {
