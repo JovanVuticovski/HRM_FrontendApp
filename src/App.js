@@ -1,19 +1,26 @@
-import { useEffect } from "react";
-import { useState } from "react";
+//import { useEffect } from "react";
+//import { useState } from "react";
 //import axios from "axios";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+//import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
-import NavbarView from "./components/views/RegisterView";
-import HomePageView from "./components/views/HomePageView";
+//import NavbarView from "./components/views/RegisterView";
+//import HomePageView from "./components/views/HomePageView";
 import LoginView from "./components/views/LoginView";
-import RegisterView from "./components/views/RegisterView";
+//import RegisterView from "./components/views/RegisterView";
 
 function App() {
-  const [user, setUser] = useState(null);
-  const [token, setToken] = useState(null); // JWT token after login/register
+  //  const [user, setUser] = useState(null);
+  //  const [token, setToken] = useState(null); // JWT token after login/register
 
   return (
     <div className="App">
+      <LoginView />
+    </div>
+  );
+}
+/*
+
+
       <Router>
         <NavbarView />
         <Routes>
@@ -22,11 +29,7 @@ function App() {
           <Route exact path="/register" element={<RegisterView />} />
         </Routes>
         <HomePageView />
-      </Router>
-    </div>
-  );
-}
-
+      </Router>*/
 export default App;
 
 // Stefans kod Kopia

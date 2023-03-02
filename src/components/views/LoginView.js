@@ -1,6 +1,7 @@
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
+//import { useLocalState } from "../../storage/LocalStorage";
 
 export default function LoginView(setUser, setToken) {
   //const [loading, setLoading] = useState(false);
@@ -8,15 +9,10 @@ export default function LoginView(setUser, setToken) {
   const [login, setLogin] = useState(false);
   const [email, setEmail] = useState([""]);
   const [password, setPassword] = useState([""]);
-  const [jwt, setJwt] = useState([""]);
+  const [jwt, setJwt] = useState("");
   const [error, setError] = useState();
 
-  useEffect(() => {
-    const user = {
-      email,
-      password,
-    };
-
+  const loginCB = useCallback(() => {
     axios
       .post("/user/authenticate", {
         password: "Joel12345",
@@ -24,11 +20,55 @@ export default function LoginView(setUser, setToken) {
       })
 
       .then((res) => {
-        localStorage.setItem("Authorization", "value");
+        setJwt(res.data.token);
+        //localStorage.setItem("Authorization", "value");
         console.log(res);
       })
       .catch((error) => {
         setError(error);
       });
   }, []); // Code in useEffect runs 1 time when app starts
+
+  useEffect(() => {
+    if (jwt) {
+      axios
+        .get("/user/...", {
+          // set jwt header
+        })
+
+        .then((res) => {
+          setJwt(res.data.token);
+          //localStorage.setItem("Authorization", "value");
+          console.log(res);
+        })
+        .catch((error) => {
+          setError(error);
+        });
+    }
+  }, []);
+  //useEffect(() => {
+  //  console.log(`JWT Value is: ${jwt}`); // Check if Jwt values goes from "" to a value
+  //}, []);
+  if (jwt) {
+    if (loading) {
+      //  ...
+    } else if (error) {
+      //  ...
+    } else {
+      //visa data
+    }
+    return (
+      <div className="LoginView">
+        <h1>You are logged in</h1>
+        <div> JWT value is {jwt} </div>
+      </div>
+    );
+  } else {
+    return (
+      <div className="LoginView">
+        <h1>Log in</h1>
+        <button onClick={loginCB}>Press to login</button>
+      </div>
+    );
+  }
 }
