@@ -4,14 +4,14 @@ import axios from "axios";
 //import { useLocalState } from "../../storage/LocalStorage";
 
 export default function LoginView(setUser, setToken) {
-  //const [loading, setLoading] = useState(false);
-
+  const [loading, setLoading] = useState(false);
   const [login, setLogin] = useState(false);
-  const [email, setEmail] = useState([""]);
-  const [password, setPassword] = useState([""]);
+  //const [email, setEmail] = useState([""]);
+  // const [password, setPassword] = useState([""]);
   const [jwt, setJwt] = useState("");
   const [error, setError] = useState();
 
+  // Fetch Post
   const loginCB = useCallback(() => {
     axios
       .post("/user/authenticate", {
@@ -29,10 +29,11 @@ export default function LoginView(setUser, setToken) {
       });
   }, []); // Code in useEffect runs 1 time when app starts
 
+  // Fetch Get
   useEffect(() => {
     if (jwt) {
       axios
-        .get("/user/...", {
+        .get("/semester/", {
           // set jwt header
         })
 
@@ -45,7 +46,8 @@ export default function LoginView(setUser, setToken) {
           setError(error);
         });
     }
-  }, []);
+  }, [jwt]);
+
   //useEffect(() => {
   //  console.log(`JWT Value is: ${jwt}`); // Check if Jwt values goes from "" to a value
   //}, []);
@@ -55,7 +57,7 @@ export default function LoginView(setUser, setToken) {
     } else if (error) {
       //  ...
     } else {
-      //visa data
+      //show data
     }
     return (
       <div className="LoginView">
