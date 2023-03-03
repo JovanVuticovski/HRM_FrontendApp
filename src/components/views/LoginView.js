@@ -34,7 +34,10 @@ export default function LoginView(setUser, setToken) {
     if (jwt) {
       axios
         .get("/semester/", {
+          //Lägg till Header
           // set jwt header
+          // set key "Authorization"
+          // set value "Bearer {Jwt}""
         })
 
         .then((res) => {
@@ -57,8 +60,9 @@ export default function LoginView(setUser, setToken) {
     } else if (error) {
       //  ...
     } else {
-      //show data
+      //show data response from backend
     }
+
     return (
       <div className="LoginView">
         <h1>You are logged in</h1>
