@@ -32,7 +32,6 @@ export default function LoginView(setUser, setToken) {
 
   // Fetch Get
   useEffect(() => {
-    setLoading(true);
     if (jwt) {
       axios
         .get("/semester/", {
