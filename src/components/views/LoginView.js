@@ -8,6 +8,7 @@ export default function LoginView(setUser, setToken) {
   const [login, setLogin] = useState(false);
   //const [email, setEmail] = useState([""]);
   // const [password, setPassword] = useState([""]);
+  const [semesters, setSemesters] = useState(); // List of all semesters
   const [jwt, setJwt] = useState("");
   const [error, setError] = useState();
 
@@ -31,36 +32,46 @@ export default function LoginView(setUser, setToken) {
 
   // Fetch Get
   useEffect(() => {
+    setLoading(true);
     if (jwt) {
       axios
         .get("/semester/", {
-          //Lägg till Header
-          // set jwt header
-          // set key "Authorization"
-          // set value "Bearer {Jwt}""
+          headers: { Authorization: `Bearer ${jwt}` },
         })
 
         .then((res) => {
-          setJwt(res.data.token);
-          //localStorage.setItem("Authorization", "value");
+          setSemesters(res.data);
           console.log(res);
+          //localStorage.setItem("Authorization", "value");
         })
         .catch((error) => {
           setError(error);
+        })
+        .finally(() => {
+          setLoading(false);
         });
     }
-  }, [jwt]);
+  }, [jwt]); // Represent current Jwt Value
 
-  //useEffect(() => {
-  //  console.log(`JWT Value is: ${jwt}`); // Check if Jwt values goes from "" to a value
-  //}, []);
+  // Run code below if Jwt exist
   if (jwt) {
     if (loading) {
-      //  ...
-    } else if (error) {
-      //  ...
+      return <div>loading...</div>;
+    }
+    // Error Handling
+    else if (error) {
+      return (
+        <div style={{ whiteSpace: "pre" }}>
+          {JSON.stringify(error, null, 2)}
+        </div>
+      );
     } else {
-      //show data response from backend
+      //Show fetched data response from backend
+      return (
+        <div style={{ whiteSpace: "pre" }}>
+          {JSON.stringify(semesters, null, 2)}
+        </div>
+      );
     }
 
     return (
