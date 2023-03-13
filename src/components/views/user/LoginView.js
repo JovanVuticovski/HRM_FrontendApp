@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
-import HomePageView from "./HomePageView";
+import HomePageView from "../semester/HomePageView";
 //import { useLocalState } from "../../storage/LocalStorage";
 
 export default function LoginView(setUser, setToken) {
