@@ -1,6 +1,7 @@
 import { useCallback, useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
+import HomePageView from "./HomePageView";
 //import { useLocalState } from "../../storage/LocalStorage";
 
 export default function LoginView(setUser, setToken) {
@@ -66,17 +67,13 @@ export default function LoginView(setUser, setToken) {
         </div>
       );
     } else {
-      //Show fetched data response from backend
-      return (
-        <div style={{ whiteSpace: "pre" }}>
-          {JSON.stringify(semesters, null, 2)}
-        </div>
-      );
+      // Getting list of semesters
+      return <HomePageView value={semesters} />;
     }
 
     return (
       <div className="LoginView">
-        <h1>You are logged in</h1>
+        <h1>User is logged in</h1>
         <div> JWT value is {jwt} </div>
       </div>
     );
@@ -89,3 +86,18 @@ export default function LoginView(setUser, setToken) {
     );
   }
 }
+
+/*
+ //Show fetched data response from backend
+ return (
+  <div style={{ whiteSpace: "pre" }}>
+    {JSON.stringify(semesters, null, 2)}
+  </div>
+);*/
+
+/*
+
+else {
+  return <HomePageView Value={semesters} />;
+}
+*/
